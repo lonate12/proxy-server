@@ -13,6 +13,19 @@ app.get('/test', function(req, res){ // listens for request on /api route
 /* PUT YOUR CODE BETWEEN COMMENTS */
 
 
+app.get('/forecast', function(req, res){ // listens for request on /api route
+  var lat = req.query.lat; // grabs lat and lng queries from the request object
+  var lng = req.query.lng;
+  request('https://api.darksky.net/forecast/03ef0b3a68e2f7e02eb43ca0bd30e60c/'+lat+','+lng, function (error, response, body) { // api url
+    if (!error && response.statusCode === 200) {
+      console.log(lat);
+      console.log(lng);
+      res.send(body); // if no errors, send the body of data back to front end
+    }
+   });
+});
+
+
 
 /* PUT YOUR CODE ABOVE THIS COMMENT */
 
